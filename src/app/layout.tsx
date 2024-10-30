@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import DotPattern from "@/components/ui/dot-pattern";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -25,10 +26,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body>
+      <div className="relative min-h-screen select-none">
+              <DotPattern className="fixed inset-0 pointer-events-none" />
+                <div className="relative z-10">
+                  {children}
+                </div>
+            </div>
       </body>
     </html>
   );
