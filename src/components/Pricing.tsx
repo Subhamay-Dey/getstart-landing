@@ -72,7 +72,7 @@ function Pricing() {
               ))}
             </div>
             <div className="card-actions mt-6">
-              <button className="btn btn-primary btn-block">Get ShipFast</button>
+              <button className="btn btn-primary btn-block">GetStart</button>
             </div>
             <p className="text-center text-sm mt-2">Pay once. Build unlimited projects!</p>
           </div>
@@ -118,13 +118,13 @@ function Pricing() {
                   </svg>
                   {feature}
                   {feature === "Lifetime updates" && (
-                    <span className="badge badge-sm badge-success">Updated 6 days ago</span>
+                    <span className="badge badge-sm badge-success">Updated 1 day ago</span>
                   )}
                 </div>
               ))}
             </div>
             <div className="card-actions mt-6">
-              <button className="btn btn-primary bg-yellow-300 btn-block">Get ShipFast</button>
+              <button className="btn btn-primary bg-yellow-300 btn-block">GetStart</button>
             </div>
             <p className="text-center text-sm mt-2">Pay once. Build unlimited projects!</p>
           </div>
