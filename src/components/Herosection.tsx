@@ -95,6 +95,11 @@ export default function Herosection() {
                   <Button variant="ghost" size={"lg"}>Pricing</Button>
                 </NavigationMenuLink>
               </NavigationMenuItem>
+              <NavigationMenuItem>
+                <NavigationMenuLink>
+                  <Button variant="ghost" size={"lg"}>How it Works</Button>
+                </NavigationMenuLink>
+              </NavigationMenuItem>
             </NavigationMenuList>
           </NavigationMenu>
         </div>
@@ -108,7 +113,7 @@ export default function Herosection() {
           your next project faster
         </h1>
       </span>
-      <p className='mt-10 text-[15px] md:text-xl leading-relaxed max-w-xl text-center px-6'>
+      <p className='text-muted-foreground mt-10 text-[15px] md:text-xl leading-relaxed max-w-xl text-center px-6'>
         SaaS kit with clean UI, authentication, payments, and simple docs, so you can focus on what matters.
       </p>
       <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-black font-bold'>

@@ -47,7 +47,7 @@ export function AnimatedBeamDemo() {
             <img src="/react.png" alt="React" className="w-full h-full" />
           </Circle>
           <Circle ref={div8Ref}>
-            <img src="/stripe.png" alt="Stripe" className="w-full h-full" />
+            <img src="/lemonsquezzy.png" alt="lemonsquezzy" className="w-full h-full" />
           </Circle>
           <Circle ref={div5Ref}>
             <img src="/nodejs.png" alt="Node.js" className="w-full h-full" />
