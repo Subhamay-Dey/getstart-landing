@@ -69,8 +69,8 @@ export default function Component() {
       </div>
 
       <div className={`card w-full max-w-md bg-neutral shadow-xl ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-        <div className="card-body">
-          <h2 className="card-title text-neutral-content animate-pulse">Time Breakdown</h2>
+        <div className="card-body w-full">
+          <h2 className="card-title text-neutral-content flex justify-center items-center">Time Breakdown</h2>
           
           <div className="space-y-3 mt-4">
             {tasks.map((item, index) => (
@@ -79,7 +79,7 @@ export default function Component() {
                 className="task-item flex gap-3 items-center p-2 rounded-lg transition-all hover:bg-base-100/10"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <span className="text-error font-mono whitespace-nowrap animate-pulse">
+                <span className="text-error font-mono whitespace-nowrap font-semibold">
                   {index === 0 ? "" : "+"} {item.time}
                 </span>
                 <span className="text-neutral-content">{item.task}</span>
@@ -90,9 +90,9 @@ export default function Component() {
               className="task-item flex gap-3 items-center pt-4 mt-4 border-t border-base-100/20"
               style={{ animationDelay: `${tasks.length * 0.1}s` }}
             >
-              <span className="text-error font-mono animate-pulse">= 18+ hours</span>
+              <span className="text-error font-mono font-semibold">= 18+ hours</span>
               <span className="text-neutral-content">of headaches</span>
-              <Cloud className="w-5 h-5 text-neutral-content/70 animate-bounce" />
+              <Cloud className="w-5 h-5 text-neutral-content/70 animate-bounce"/>
             </div>
           </div>
         </div>
