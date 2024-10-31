@@ -14,41 +14,58 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu"
-import { GiHamburgerMenu } from "react-icons/gi";
 
 const components = [
-  
-    {
-      title: "Alert Dialog",
-      href: "/docs/primitives/alert-dialog",
-      description: "A modal dialog that interrupts the user with important content and expects a response.",
-    },
-    {
-      title: "Hover Card",
-      href: "/docs/primitives/hover-card",
-      description: "For sighted users to preview content available behind a link.",
-    },
-    {
-      title: "Progress",
-      href: "/docs/primitives/progress",
-      description: "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-    },
-    {
-      title: "Scroll-area",
-      href: "/docs/primitives/scroll-area",
-      description: "Visually or semantically separates content.",
-    },
-    {
-      title: "Tabs",
-      href: "/docs/primitives/tabs",
-      description: "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-    },
-    {
-      title: "Tooltip",
-      href: "/docs/primitives/tooltip",
-      description: "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
-    },
-  ];
+  {
+      "title": "Clean UI with Next.js",
+      "image": "/nextjs.png",
+      "description": "Beautiful, intuitive UI built with Next.js.",
+  },
+  {
+      "title": "Pre-Built SEO",
+      "image": "/seo.png",
+      "description": "SEO-ready for better search visibility.",
+  },
+  {
+      "title": "Auth with NextAuth",
+      "image": "/nextauth.png",
+      "description": "Secure authentication with NextAuth integration.",
+  },
+  {
+      "title": "Mailing with Mailgun",
+      "image": "/mailgun.png",
+      "description": "Email integration using Mailgun API.",
+  },
+  {
+      "title": "Backend Routes",
+      "image": "/nodejs.png",
+      "description": "Pre-configured Next.js API routes for backend.",
+  },
+  {
+      "title": "MongoDB with Prisma",
+      "image": "/db.png",
+      "description": "Database setup with MongoDB and Prisma ORM.",
+  }
+];
+const useCases = [
+  {
+    title: "For Your Next Side Project",
+    description: "Perfect for quickly launching small projects.",
+  },
+  {
+    title: "Build & Launch Your SaaS",
+    description: "Accelerate SaaS development with pre-built features.",
+  },
+  {
+    title: "Focus on Core Features",
+    description: "Skip repetitive setup and focus on what matters.",
+  },
+  {
+    title: "Save 20+ Hours",
+    description: "Cut down setup time with a ready-to-go template.",
+  },
+];
+
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false)
@@ -68,21 +85,24 @@ export default function Navbar() {
             <NavigationMenuItem>
               <NavigationMenuTrigger>What you get</NavigationMenuTrigger>
               <NavigationMenuContent>
-                <ul className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
-                  {components.map((component) => (
-                    <ListItem key={component.title} title={component.title} href={component.href}>
+              <ul className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
+                {components.map((component) => (
+                  <div key={component.title} className="flex items-center justify-center space-x-2">
+                    <img src={component.image} alt={`${component.title} icon`} className="w-6 h-6" />
+                    <ListItem title={component.title}>
                       {component.description}
                     </ListItem>
-                  ))}
-                </ul>
+                  </div>
+                ))}
+              </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
               <NavigationMenuTrigger>Use Cases</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
-                  {components.map((component) => (
-                    <ListItem key={component.title} title={component.title} href={component.href}>
+                  {useCases.map((component) => (
+                    <ListItem key={component.title} title={component.title}>
                       {component.description}
                     </ListItem>
                   ))}
@@ -126,9 +146,12 @@ export default function Navbar() {
                   <NavigationMenuContent>
                     <ul className="grid w-[calc(300px-2rem)] gap-3 p-4 sm:w-[calc(350px-2rem)]">
                       {components.map((component) => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
+                        <div key={component.title} className="flex items-center justify-center space-x-2">
+                        <img src={component.image} alt={`${component.title} icon`} className="w-6 h-6" />
+                        <ListItem title={component.title}>
                           {component.description}
                         </ListItem>
+                      </div>
                       ))}
                     </ul>
                   </NavigationMenuContent>
@@ -137,8 +160,8 @@ export default function Navbar() {
                   <NavigationMenuTrigger>Use Cases</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[calc(300px-2rem)] gap-3 p-4 sm:w-[calc(350px-2rem)]">
-                      {components.map((component) => (
-                        <ListItem key={component.title} title={component.title} href={component.href}>
+                      {useCases.map((component) => (
+                        <ListItem key={component.title} title={component.title}>
                           {component.description}
                         </ListItem>
                       ))}
@@ -180,9 +203,18 @@ export default function Navbar() {
   )
 };
 
-const ListItem = ({ title, href, children }: { title: string; href: string; children: React.ReactNode }) => (
-    <li>
-      <NavigationMenuLink asChild>
+const ListItem = ({
+  title,
+  href,
+  children,
+}: {
+  title: string;
+  href?: string;
+  children: React.ReactNode;
+}) => (
+  <li>
+    <NavigationMenuLink asChild>
+      {href ? (
         <a
           href={href}
           className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
@@ -190,6 +222,15 @@ const ListItem = ({ title, href, children }: { title: string; href: string; chil
           <div className="text-sm font-medium leading-none">{title}</div>
           <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
         </a>
-      </NavigationMenuLink>
-    </li>
-  )
+      ) : (
+        <div
+          className="block select-none space-y-1 rounded-md p-3 leading-none outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">{children}</p>
+        </div>
+      )}
+    </NavigationMenuLink>
+  </li>
+);
+
