@@ -1,3 +1,4 @@
+import { AnimatedBeamDemo } from "@/components/AnimatedBeamDemo";
 import Herosection from "@/components/Herosection";
 import Pricing from "@/components/Pricing";
 import TechStack from "@/components/TechStack";
