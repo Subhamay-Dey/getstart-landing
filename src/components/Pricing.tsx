@@ -1,6 +1,15 @@
-import React from 'react'
+"use client"
+
+import React, {useEffect} from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 function Pricing() {
+
+    useEffect(() => {
+        AOS.init({ duration: 1000 }); // Adjust duration as needed
+    }, []);
+
   return (
     <>
     <div className="min-h-screen bg-base-200 py-12 px-4 text-white">
@@ -15,7 +24,7 @@ function Pricing() {
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
         {/* Starter Plan */}
-        <div className="card bg-base-100 shadow-xl">
+        <div data-aos="fade-right" className="card bg-base-100 shadow-xl">
           <div className="card-body">
             <h2 className="card-title text-2xl mb-4">Starter</h2>
             <div className="flex items-baseline gap-2 mb-6">
@@ -79,7 +88,7 @@ function Pricing() {
         </div>
 
         {/* All-in Plan */}
-        <div className="card bg-base-100 shadow-xl relative border-[2px] border-yellow-300">
+        <div data-aos="fade-left" className="card bg-base-100 shadow-xl relative border-[2px] border-yellow-300">
           <div className="absolute -top-4 right-4">
             <div className="badge badge-warning p-3">POPULAR</div>
           </div>
