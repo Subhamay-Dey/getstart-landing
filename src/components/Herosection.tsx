@@ -15,6 +15,7 @@ import {
 import { AnimatedSubscribeButton } from "./ui/animated-subscribe-button";
 import { ArrowRightIcon, CheckIcon } from "lucide-react";
 import { Button } from "./ui/button";
+import { AnimatedBeamDemo } from "./AnimatedBeamDemo";
 
 const components = [
   
@@ -53,12 +54,12 @@ const components = [
 export default function Herosection() {
   return (
     <div className='relative min-h-screen w-full flex flex-col justify-center items-center'>
-      <nav className='absolute top-0 py-6 px-10 flex justify-between w-full'>
+      <nav className='absolute top-0 py-6 px-7 lg:px-10 flex justify-between w-full'>
         <span className='flex gap-2'>
           <h2 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>Getstart</h2>
           <img src="/logo.png" alt="logo" className='size-7' />
         </span>
-        <div className='flex gap-2'>
+        <div className='hidden lg:flex gap-2'>
           <NavigationMenu>
             <NavigationMenuList>
               <NavigationMenuItem>
@@ -97,22 +98,23 @@ export default function Herosection() {
             </NavigationMenuList>
           </NavigationMenu>
         </div>
-        <Button>Get Kit ✨</Button>
+        <Button size={"sm"}>Get Kit ✨</Button>
       </nav>
-      <span className="flex-col flex">
-        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
+      <span className="flex-col flex md:pt-[140px] pt-[65px]">
+        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-4xl lg:text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
           Build and launch
         </h1>
-        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
+        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-4xl lg:text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
           your next project faster
         </h1>
       </span>
-      <p className='mt-10 text-xl leading-relaxed max-w-xl text-center'>
+      <p className='mt-10 text-[15px] md:text-xl leading-relaxed max-w-xl text-center px-6'>
         SaaS kit with clean UI, authentication, payments, and simple docs, to focus on what matters.
       </p>
-      <ShinyButton className='px-8 py-4 mt-[45px] rounded-xl shadow-2xl text-black font-bold'>
+      <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-black font-bold'>
         Get kit ✨
       </ShinyButton>
+      <AnimatedBeamDemo/>
     </div>
   );
 }
