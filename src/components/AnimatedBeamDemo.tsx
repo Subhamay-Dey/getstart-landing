@@ -44,13 +44,13 @@ export function AnimatedBeamDemo() {
       <div className="flex size-full flex-col max-w-lg max-h-[200px] items-stretch justify-between gap-10">
         <div className="flex flex-row items-center justify-between">
           <Circle ref={div1Ref}>
-            <img src="/react.png" alt="React" className="w-full h-full" />
+            <img src="/nextjs.png" alt="Nextjs" className="w-full h-full" />
           </Circle>
           <Circle ref={div8Ref}>
             <img src="/lemonsquezzy.png" alt="lemonsquezzy" className="w-full h-full" />
           </Circle>
           <Circle ref={div5Ref}>
-            <img src="/nodejs.png" alt="Node.js" className="w-full h-full" />
+            <img src="/tailwind.png" alt="Tailwindcss" className="w-full h-full" />
           </Circle>
         </div>
         <div className="flex flex-row items-center justify-between">
@@ -61,7 +61,7 @@ export function AnimatedBeamDemo() {
             <img src="/logo.png" alt="Getstart" className="w-full h-full" />
           </Circle>
           <Circle ref={div6Ref}>
-            <img src="/express.png" alt="Express" className="w-full h-full" />
+            <img src="/shadcn.png" alt="Shadcn" className="w-full h-full" />
           </Circle>
         </div>
         <div className="flex flex-row items-center justify-between">
