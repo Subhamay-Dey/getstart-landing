@@ -3,17 +3,23 @@ import React from 'react'
 function Pricing() {
   return (
     <>
-    <div className="min-h-screen bg-base-200 py-12 px-4 text-white">
+    <div className="min-h-screen py-12 px-4">
       <div className="text-center mb-12">
-        <h1 className="text-5xl font-bold mb-4">Save hours of repetitive code,</h1>
-        <h2 className="text-5xl font-bold mb-8">ship fast, get profitable!</h2>
-        <div className="flex items-center justify-center gap-2">
+      <span className="flex-col flex pt-[20px] space-y-3">
+        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-3xl lg:text-5xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
+          Save hours on repetative code
+        </h1>
+        <h1 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-3xl lg:text-5xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400'>
+          Build fast - launch fast
+        </h1>
+      </span>
+        <div className="flex items-center justify-center gap-2 mt-8">
           <span className="text-success">$10 off</span>
           <span>for the first 50 customers</span>
         </div>
       </div>
 
-      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+      <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8 text-white">
         {/* Starter Plan */}
         <div className="card bg-base-100 shadow-xl">
           <div className="card-body">

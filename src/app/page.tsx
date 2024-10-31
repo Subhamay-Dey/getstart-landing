@@ -9,7 +9,6 @@ export default function Home() {
     <div>
       <Herosection/>
       <TimeSaver/>
-      <TechStack/>
       <Pricing/>
     </div>
   );
