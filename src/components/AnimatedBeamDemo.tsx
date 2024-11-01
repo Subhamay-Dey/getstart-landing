@@ -47,7 +47,7 @@ export function AnimatedBeamDemo() {
             <img src="/nextjs.png" alt="Nextjs" className="w-full h-full" />
           </Circle>
           <Circle ref={div8Ref}>
-            <img src="/lemonsquezzy.png" alt="lemonsquezzy" className="w-full h-full" />
+            <img src="/razorpay.png" alt="Razorpay" className="w-full h-full" />
           </Circle>
           <Circle ref={div5Ref}>
             <img src="/tailwind.png" alt="Tailwindcss" className="w-full h-full" />

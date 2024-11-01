@@ -34,7 +34,7 @@ export default function Herosection() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount: 159900 }), // amount in the smallest currency unit (1599 INR)
+        body: JSON.stringify({ amount: 100 }), // amount in the smallest currency unit (1599 INR)
       });
 
       const orderData: RazorpayOrderResponse = await response.json();
@@ -49,7 +49,6 @@ export default function Herosection() {
         order_id: orderData.id,
         handler: function (response: any) {
           alert("Payment successful!");
-          // Additional post-payment verification logic here
         },
         prefill: {
           name: "Your Name",
