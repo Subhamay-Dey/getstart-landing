@@ -44,6 +44,7 @@ export default function Herosection() {
         amount: orderData.amount.toString(),
         currency: orderData.currency,
         name: "GetStart Kit",
+        image: "/logo.png",
         description: "Get your SaaS kit for one-time payment",
         order_id: orderData.id,
         handler: function (response: any) {
@@ -56,7 +57,7 @@ export default function Herosection() {
           contact: "1234567890",
         },
         theme: {
-          color: "#F37254",
+          color: "#A594F9"
         },
       };
 
@@ -84,7 +85,7 @@ export default function Herosection() {
       </p>
 
       <div onClick={handlePayment}>
-        <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-black font-bold'>
+        <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-zinc-900 font-bold bg-gradient-to-r from-[#A594F9] to-[#CDC1FF]'>
           Get kit ✨
         </ShinyButton>
       </div>
