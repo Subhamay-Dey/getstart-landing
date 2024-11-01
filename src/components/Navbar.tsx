@@ -196,7 +196,7 @@ export default function Navbar() {
         </SheetContent>
       </Sheet>
 
-      <Link href={'/checkout'}>
+      <Link href={'/'}>
         <Button size="sm" className="hidden lg:inline-flex">
           Get Kit ✨
         </Button>
