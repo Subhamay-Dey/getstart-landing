@@ -5,6 +5,7 @@ import ShinyButton from './ui/shiny-button';
 
 import { AnimatedBeamDemo } from "./AnimatedBeamDemo";
 import Navbar from "./Navbar";
+import Link from "next/link";
 
 export default function Herosection() {
   return (
@@ -21,9 +22,11 @@ export default function Herosection() {
       <p className='text-muted-foreground mt-10 text-[15px] md:text-xl leading-relaxed max-w-xl text-center px-6'>
         SaaS kit with clean UI, authentication, payments, and simple docs, so you can focus on what matters.
       </p>
+      <Link href={"/checkout"}>
       <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-black font-bold'>
         Get kit ✨
       </ShinyButton>
+      </Link>
       <AnimatedBeamDemo/>
     </div>
   );
