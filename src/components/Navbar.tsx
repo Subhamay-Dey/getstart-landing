@@ -196,8 +196,8 @@ export default function Navbar() {
         </SheetContent>
       </Sheet>
 
-      <Link href={'/'}>
-        <Button size="sm" className="hidden lg:inline-flex">
+      <Link href={'/'} className="hidden lg:inline-flex">
+        <Button size="sm">
           Get Kit ✨
         </Button>
       </Link>

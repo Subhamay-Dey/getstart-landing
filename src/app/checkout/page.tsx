@@ -1,8 +1,8 @@
-import Checkout from '@/components/Checkout'
+import Razorpay from '@/components/Razorpay'
 import React from 'react'
 
 export default function page() {
   return (
-    <Checkout/>
+    <Razorpay/>
   )
 }
