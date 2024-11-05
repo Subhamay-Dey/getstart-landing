@@ -1,71 +1,135 @@
 'use client'
+
 import { useState } from 'react'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { loadRazorpayScript } from '@/lib/loadRazorpayScript';
 
-export default function Checkout() {
-  const [location, setLocation] = useState('india')
-  const [email, setEmail] = useState('')
+
+interface RazorpayOrderResponse {
+  id: string;
+  amount: number;
+  currency: string;
+}
+
+declare global {
+  interface Window {
+    Razorpay: any;
+  }
+}
+
+export default function CheckoutPage() {
+  const [currency, setCurrency] = useState<'USD' | 'INR'>('USD')
+
+  const productName = "Getkit: Best Nextjs SaaS kit"
+  const productDescription = "Built-in authentication, database, backend, and payments"
+  const priceUSD = 19
+  const priceINR = 1599
+
+  const handleCurrencyChange = (value: string) => {
+    setCurrency(value as 'USD' | 'INR')
+  }
+
+  const handlePayment = async () => {
+    const isRazorpayLoaded = await loadRazorpayScript("https://checkout.razorpay.com/v1/checkout.js");
+    
+    if (!isRazorpayLoaded) {
+      alert("Failed to load Razorpay. Please try again.");
+      return;
+    }
+
+    try {
+        const amount = currency === 'USD' ? priceUSD * 100 : priceINR * 100;
+      
+        const response = await fetch("/api/createPayment", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ amount, currency }),
+        });
+      
+        const orderData: RazorpayOrderResponse = await response.json();
+      
+        const options = {
+          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
+          amount: orderData.amount.toString(),
+          currency: orderData.currency,
+          name: "GetStart Kit",
+          image: "/logo.png",
+          description: "Get your SaaS kit for one-time payment",
+          order_id: orderData.id,
+          handler: function (response: any) {
+            alert("Payment successful!");
+          },
+          prefill: {
+            name: "Your Name",
+            email: "email@example.com",
+            contact: "1234567890",
+          },
+          theme: {
+            color: "#A594F9"
+          },
+        };
+      
+        const rzp1 = new window.Razorpay(options);
+        rzp1.open();    
+    } catch (error) {
+      console.error("Error during payment", error);
+      alert("There was an error initiating the payment. Please try again.");
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col md:flex-row items-center justify-center p-4 md:p-8">
-      <div className="w-full md:w-1/2 mb-8 md:mb-0 md:pr-8">
-        <Image
-          src="/productImg.png"
-          alt="SaaS Product"
-          width={600}
-          height={600}
-          className="rounded-lg shadow-lg"
-        />
-      </div>
-      <Card className="w-full md:w-1/2 max-w-md">
-        <CardHeader>
-          <CardTitle>Checkout</CardTitle>
-          <CardDescription>Choose your payment option</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <RadioGroup value={location} onValueChange={setLocation} className="mb-4">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="india" id="india" />
-              <Label htmlFor="india">India</Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="international" id="international" />
-              <Label htmlFor="international">Outside India</Label>
-            </div>
-          </RadioGroup>
+    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <div className="max-w-6xl w-full h-full overflow-hidden flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row h-full gap-8">
+          {/* Left column - Image */}
+          <div className="md:w-1/2 relative h-full">
+            <Image
+              width={700}
+              height={700}
+              src="/sidePic.png"
+              alt="Getkit product image"
+              style={{ objectFit: 'cover' }}
+            />
+          </div>
 
-          {location === 'india' ? (
-            <div className="h-64 flex items-center justify-center rounded-lg">
-              <img src='/qrGpay.jpeg' alt='gpayQR' className='w-[60%] h-auto'/>
-            </div>
-          ) : (
+          {/* Right column - Product details */}
+          <div className="md:w-1/2 p-8 flex flex-col justify-between h-full">
             <div>
-              <p className="mb-4 text-sm text-gray-600">We are currently accepting payments from India only. Enter your email to join the waitlist for international access.</p>
-              <Input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mb-4"
-              />
-              <Button className="w-full">Request Access</Button>
+              <h1 className="text-3xl font-bold mb-2">{productName}</h1>
+              <p className="text-muted-foreground mb-6">{productDescription}</p>
+              
+              <div className="flex items-center justify-between mb-6">
+                <span className="text-2xl font-bold">
+                  {currency === 'USD' ? `$${priceUSD}` : `₹${priceINR}`}
+                </span>
+                <Select onValueChange={handleCurrencyChange} defaultValue={currency}>
+                  <SelectTrigger className="w-[100px]">
+                    <SelectValue placeholder="Currency" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="USD">USD</SelectItem>
+                    <SelectItem value="INR">INR</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
             </div>
-          )}
-        </CardContent>
-        <CardFooter>
-          {location === 'india' && (
-            <Button className="w-full flex">
-                <img src='/search.png' alt='gpay' className='size-5'/>
-                <p>Complete Purchase of $19</p>
+
+            <Button className="w-full" size="lg" onClick={handlePayment}>
+              Proceed to Checkout
             </Button>
-          )}
-        </CardFooter>
-      </Card>
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
