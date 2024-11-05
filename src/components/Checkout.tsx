@@ -11,7 +11,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { loadRazorpayScript } from '@/lib/loadRazorpayScript';
-
+import { Input } from './ui/input'
+import { toast } from 'sonner'
 
 interface RazorpayOrderResponse {
   id: string;
@@ -27,63 +28,111 @@ declare global {
 
 export default function CheckoutPage() {
   const [currency, setCurrency] = useState<'USD' | 'INR'>('USD')
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState('');
 
-  const productName = "Getkit: Best Nextjs SaaS kit"
+  const productName = "Getstart: Best Nextjs SaaS kit"
   const productDescription = "Built-in authentication, database, backend, and payments"
-  const priceUSD = 19
-  const priceINR = 1599
+  const priceUSD = 1
+  const priceINR = 1
 
   const handleCurrencyChange = (value: string) => {
     setCurrency(value as 'USD' | 'INR')
   }
 
+  const isValidEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  const sendZipFile = async (paymentId: string) => {
+    try {
+      const response = await fetch("/api/sendZipFile", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          email,
+          paymentId 
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send zip file');
+      }
+
+      return true;
+    } catch (error) {
+      console.log("Error sending zip file:", error);
+      return false;
+    }
+  }
+
   const handlePayment = async () => {
+    setStatusMessage('');
+    if (!isValidEmail(email)) {
+      toast.warning("Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+
     const isRazorpayLoaded = await loadRazorpayScript("https://checkout.razorpay.com/v1/checkout.js");
     
     if (!isRazorpayLoaded) {
-      alert("Failed to load Razorpay. Please try again.");
+      toast.error("Failed to load Razorpay. Please try again.");
+      setIsSubmitting(false);
       return;
     }
 
     try {
-        const amount = currency === 'USD' ? priceUSD * 100 : priceINR * 100;
-      
-        const response = await fetch("/api/createPayment", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ amount, currency }),
-        });
-      
-        const orderData: RazorpayOrderResponse = await response.json();
-      
-        const options = {
-          key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
-          amount: orderData.amount.toString(),
-          currency: orderData.currency,
-          name: "GetStart Kit",
-          image: "/logo.png",
-          description: "Get your SaaS kit for one-time payment",
-          order_id: orderData.id,
-          handler: function (response: any) {
-            alert("Payment successful!");
-          },
-          prefill: {
-            name: "Your Name",
-            email: "email@example.com",
-            contact: "1234567890",
-          },
-          theme: {
-            color: "#A594F9"
-          },
-        };
-      
-        const rzp1 = new window.Razorpay(options);
-        rzp1.open();    
+      const amount = currency === 'USD' ? priceUSD * 100 : priceINR * 100;
+    
+      const response = await fetch("/api/createPayment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ amount, currency, email }),
+      });
+    
+      const orderData: RazorpayOrderResponse = await response.json();
+    
+      const options = {
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
+        amount: orderData.amount.toString(),
+        currency: orderData.currency,
+        name: "GetStart Kit",
+        image: "/logo.png",
+        description: "Get your SaaS kit for one-time payment",
+        order_id: orderData.id,
+        handler: async function (response: any) {
+          const zipSent = await sendZipFile(response.razorpay_payment_id);
+          if (zipSent) {
+            setStatusMessage("Payment successful! The zip file has been sent to your email.");
+            toast.success("Payment successful! The zip file has been sent to your email.");
+          } else {
+            setStatusMessage("Payment successful! There was an issue sending the zip file. Our team will contact you shortly.");
+            toast.error("Payment successful! However, there was an issue sending the zip file. Our team will contact you shortly.");
+          }
+        },
+        prefill: {
+          email: email,
+          contact: "",
+        },
+        theme: {
+          color: "#A594F9"
+        },
+      };
+    
+      const rzp1 = new window.Razorpay(options);
+      rzp1.open();    
     } catch (error) {
-      console.error("Error during payment", error);
-      alert("There was an error initiating the payment. Please try again.");
+      console.log("Error during payment", error);
+      toast.error("There was an error initiating the payment. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -124,9 +173,23 @@ export default function CheckoutPage() {
               </div>
             </div>
 
-            <Button className="w-full" size="lg" onClick={handlePayment}>
-              Proceed to Checkout
-            </Button>
+            <div className='flex flex-col space-y-3 mt-6'>
+              <Input 
+                type="email"
+                placeholder='Enter your email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+              <Button 
+                className="w-full" 
+                size="lg" 
+                onClick={handlePayment}
+                disabled={!isValidEmail(email) || isSubmitting}
+              >
+                {isSubmitting ? "Processing..." : "Proceed to Checkout"}
+              </Button>
+            </div>
           </div>
         </div>
       </div>

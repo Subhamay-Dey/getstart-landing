@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import DotPattern from "@/components/ui/dot-pattern";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -30,9 +31,10 @@ export default function RootLayout({
       <div className="relative min-h-screen select-none">
               <DotPattern className="fixed inset-0 pointer-events-none" />
                 <div className="relative z-10">
+                <Toaster richColors position="top-right" className="z-10 relative"/>
                   {children}
                 </div>
-            </div>
+      </div>
       </body>
     </html>
   );
