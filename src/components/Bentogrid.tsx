@@ -67,7 +67,7 @@ export default function Bentogrid() {
           transition={{ type: "spring", stiffness: 300 }}
           className="col-span-1 row-span-1"
         >
-          <Card className="h-full min-h-[450px]  bg-gradient-to-br from-purple-600 to-cyan-500 p-6 text-white">
+          <Card className="h-full min-h-[450px]  bg-slate-900 p-6 text-white">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
