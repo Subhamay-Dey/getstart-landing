@@ -12,7 +12,7 @@ export default function Showcase() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
 
-          <div className="lg:w-[800px] w-[360px]">
+          <div className="lg:w-[800px] w-[360px] px-4">
             <div className="relative aspect-video rounded-lg border border-gray-800 bg-black shadow-2xl">
               <video
                 className="h-full w-full rounded-lg object-cover"
@@ -28,7 +28,7 @@ export default function Showcase() {
           </div>
 
           <div className="flex-1 py-8">
-            <div className="flex justify-center items-center gap-3">
+            <div className="flex justify-center items-center gap-3 flex-col md:flex-row">
               <Link href={'/checkout'}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600">
                     Get Access - $19 USD

@@ -29,7 +29,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
       <div className="relative min-h-screen select-none">
-              <DotPattern className="fixed inset-0 pointer-events-none bg-gray-100" />
+              <DotPattern className="fixed inset-0 pointer-events-none" />
                 <div className="relative z-10">
                 <Toaster richColors position="top-right" className="z-10 relative"/>
                   {children}
