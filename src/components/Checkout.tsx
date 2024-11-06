@@ -34,8 +34,8 @@ export default function CheckoutPage() {
 
   const productName = "Getstart: Best Nextjs SaaS kit"
   const productDescription = "Built-in authentication, database, backend, and payments"
-  const priceUSD = 1
-  const priceINR = 1
+  const priceUSD = 19
+  const priceINR = 1600
 
   const handleCurrencyChange = (value: string) => {
     setCurrency(value as 'USD' | 'INR')
