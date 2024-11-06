@@ -18,7 +18,7 @@ export function CarouselDemo() {
           <CarouselItem key={index}>
             <div className="p-1">
               
-                  <Image width={800} height={800} src={src} alt={`Image ${index + 1}`} className="w-full rounded-[20px] border-2 border-zinc-400" />
+                  <img src={src} alt={`Image ${index + 1}`} className="w-full rounded-[20px] border-2 border-zinc-400" />
                
             </div>
           </CarouselItem>
