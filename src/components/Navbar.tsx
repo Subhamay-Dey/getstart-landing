@@ -5,6 +5,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { HiOutlineExternalLink } from "react-icons/hi";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
   NavigationMenu,
@@ -32,9 +33,9 @@ const components = [
       "description": "Secure authentication with NextAuth integration.",
   },
   {
-      "title": "Mailing with Mailgun",
-      "image": "/mailgun.png",
-      "description": "Email integration using Mailgun API.",
+      "title": "Mailing with Resend",
+      "image": "/resend.png",
+      "description": "Email integration using Resend API.",
   },
   {
       "title": "Backend Routes",
@@ -109,6 +110,12 @@ export default function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
+              <Button variant={'ghost'}>
+                Live Preview
+                <HiOutlineExternalLink size={20}/>
+              </Button>
+            </Link>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
@@ -154,6 +161,12 @@ export default function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+                <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
+                  <Button variant={'ghost'}>
+                    Live Preview
+                    <HiOutlineExternalLink size={20}/>
+                  </Button>
+                </Link>
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
