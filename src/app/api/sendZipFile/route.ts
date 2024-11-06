@@ -1,8 +1,8 @@
-import { Resend } from 'resend';
 import path from 'path';
 import fs from 'fs';
 import { promises as fsPromises } from 'fs';
 import Razorpay from 'razorpay';
+import nodemailer from 'nodemailer';
 import { NextRequest, NextResponse } from 'next/server';
 
 const razorpay = new Razorpay({
@@ -10,7 +10,15 @@ const razorpay = new Razorpay({
   key_secret: process.env.RAZORPAY_SECRET_ID!,
 });
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: parseInt(process.env.SMTP_PORT!, 10),
+  secure: false, // Use `true` for port 465, `false` for other ports
+  auth: {
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -30,8 +38,8 @@ export async function POST(request: NextRequest) {
     }
 
     try {
-      await resend.emails.send({
-        from: 'onboarding@resend.dev',
+      const mailOptions = {
+        from: process.env.FROM_EMAIL!,
         to: email,
         subject: 'Your GetStart Kit',
         html: `<div style="font-family: 'Inter', sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background: #ffffff; border-radius: 8px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
@@ -45,8 +53,9 @@ export async function POST(request: NextRequest) {
                 </a>
                 <p style="font-size: 14px; color: #666666; margin-top: 20px;">If you have any questions, feel free to reach out to us!</p>
               </div>`,
-      });
+      };
 
+      await transporter.sendMail(mailOptions);
       console.log("Email sent successfully");
       return NextResponse.json({ message: 'Zip file sent successfully' }, { status: 200 });
     } catch (error) {

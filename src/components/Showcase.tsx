@@ -99,7 +99,7 @@ export default function Showcase() {
                 {/* Nodemailer */}
                 <div className="flex items-center gap-2">
                   <Image
-                    src="/resend.png"
+                    src="/nodemailer.jpg"
                     alt="Resend"
                     width={30}
                     height={30}

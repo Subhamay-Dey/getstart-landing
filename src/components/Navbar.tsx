@@ -33,9 +33,9 @@ const components = [
       "description": "Secure authentication with NextAuth integration.",
   },
   {
-      "title": "Mailing with Resend",
-      "image": "/resend.png",
-      "description": "Email integration using Resend API.",
+      "title": "Mailing with Nodemailer",
+      "image": "/nodemailer.jpg",
+      "description": "Email integration using Nodemailer",
   },
   {
       "title": "Backend Routes",
