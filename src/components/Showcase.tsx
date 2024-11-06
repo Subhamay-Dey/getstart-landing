@@ -35,10 +35,12 @@ export default function Showcase() {
                     <ArrowRight className="h-4 w-4" />
                 </Button>
               </Link>
-              <Button variant="outline">
-                Live Preview
-                <HiOutlineExternalLink className="h-4 w-4" />
-              </Button>
+              <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
+                <Button variant="outline">
+                  Live Preview
+                  <HiOutlineExternalLink className="h-4 w-4" />
+                </Button>
+              </Link>
             </div>
             
             {/* Technology Icons */}
