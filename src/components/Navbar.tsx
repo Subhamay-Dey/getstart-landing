@@ -109,20 +109,6 @@ export default function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink>
-                <Button variant="ghost" size="lg">
-                  Pricing
-                </Button>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink>
-                <Button variant="ghost" size="lg">
-                  How it Works
-                </Button>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
       </div>
@@ -168,35 +154,13 @@ export default function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Button
-                      variant="ghost"
-                      size={'lg'}
-                      onClick={() => setIsOpen(false)}
-                    >
-                      Pricing
-                    </Button>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
-                <NavigationMenuItem>
-                  <NavigationMenuLink asChild>
-                    <Button
-                      size={'lg'}
-                      variant="ghost"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      How it Works
-                    </Button>
-                  </NavigationMenuLink>
-                </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </nav>
         </SheetContent>
       </Sheet>
 
-      <Link href={'/'} className="hidden lg:inline-flex">
+      <Link href={'/checkout'} className="hidden lg:inline-flex">
         <Button size="sm">
           Get Kit ✨
         </Button>
