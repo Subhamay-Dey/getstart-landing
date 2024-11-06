@@ -1,4 +1,4 @@
-import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa'
+import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin, FaGithub } from 'react-icons/fa'
 import Link from 'next/link'
 
 export default function Footer() {
@@ -13,7 +13,7 @@ export default function Footer() {
         <nav className="flex space-x-4">
           <Link href="https://github.com/Subhamay-Dey" className="text-gray-800 hover:text-gray-900">
             <span className="sr-only">Github</span>
-            <FaFacebook className="h-6 w-6" />
+            <FaGithub className="h-6 w-6" />
           </Link>
           <Link href="https://x.com/Subhraneel55545" className="text-gray-800 hover:text-gray-900">
             <span className="sr-only">Twitter</span>

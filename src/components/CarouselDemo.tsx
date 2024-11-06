@@ -1,6 +1,5 @@
 import * as React from "react";
 import Image from "next/image";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -19,7 +18,7 @@ export function CarouselDemo() {
           <CarouselItem key={index}>
             <div className="p-1">
               
-                  <img src={src} alt={`Image ${index + 1}`} className="w-full rounded-[20px] border-2 border-zinc-400" />
+                  <Image width={800} height={800} src={src} alt={`Image ${index + 1}`} className="w-full rounded-[20px] border-2 border-zinc-400" />
                
             </div>
           </CarouselItem>
