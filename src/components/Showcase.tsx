@@ -5,7 +5,6 @@ import { ArrowRight } from "lucide-react"
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
-import { CarouselDemo } from "./CarouselDemo";
 
 export default function Showcase() {
   return (
@@ -13,8 +12,37 @@ export default function Showcase() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
 
-          {/* Technology Icons */}
-          <div className="mt-8 mb-6">
+          <div className="lg:w-[800px] w-[360px]">
+            <div className="relative aspect-video rounded-lg border border-gray-800 bg-black shadow-2xl">
+              <video
+                className="h-full w-full rounded-lg object-cover"
+                autoPlay
+                loop
+                muted
+                playsInline
+              >
+                <source src="/vid.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </div>
+          </div>
+
+          <div className="flex-1 py-8">
+            <div className="flex justify-center items-center gap-3">
+              <Link href={'/checkout'}>
+                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600">
+                    Get Access - $19 USD
+                    <ArrowRight className="h-4 w-4" />
+                </Button>
+              </Link>
+              <Button variant="outline">
+                Live Preview
+                <HiOutlineExternalLink className="h-4 w-4" />
+              </Button>
+            </div>
+            
+            {/* Technology Icons */}
+            <div className="mt-12">
               <div className="flex flex-wrap items-center gap-2 justify-center lg:gap-6">
                 {/* Next.js */}
                 <div className="flex items-center gap-2">
@@ -107,26 +135,6 @@ export default function Showcase() {
                   />
                 </div>
               </div>
-          </div>
-
-          <div className="lg:w-[1080px] w-[360px] flex justify-center items-center">
-              <CarouselDemo/>
-          </div>
-
-          <div className="flex-1 py-8">
-            <div className="flex justify-center items-center gap-3">
-              <Link href={'/checkout'}>
-                <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600">
-                    Get Access - $19 USD
-                    <ArrowRight className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Link href={'https://getstart-lhzm.vercel.app/'}>
-                <Button variant="outline">
-                  Live Preview
-                  <HiOutlineExternalLink className="h-4 w-4" />
-                </Button>
-              </Link>
             </div>
           </div>
 
