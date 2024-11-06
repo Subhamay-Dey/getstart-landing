@@ -84,7 +84,7 @@ export default function Navbar() {
         <NavigationMenu>
           <NavigationMenuList>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>What you get</NavigationMenuTrigger>
+              <NavigationMenuTrigger  className="bg-transparent">What you get</NavigationMenuTrigger>
               <NavigationMenuContent>
               <ul className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
                 {components.map((component) => (
@@ -99,7 +99,7 @@ export default function Navbar() {
               </NavigationMenuContent>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <NavigationMenuTrigger>Use Cases</NavigationMenuTrigger>
+              <NavigationMenuTrigger className="bg-transparent">Use Cases</NavigationMenuTrigger>
               <NavigationMenuContent>
                 <ul className="grid grid-cols-2 gap-3 p-4 md:w-[500px] lg:w-[600px]">
                   {useCases.map((component) => (
