@@ -139,13 +139,13 @@ export default function CheckoutPage() {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="max-w-6xl w-full h-full overflow-hidden flex flex-col md:flex-row">
-        <div className="flex flex-col md:flex-row h-full gap-8">
+        <div className="flex flex-col md:flex-row h-full gap-14">
           {/* Left column - Image */}
           <div className="md:w-1/2 relative h-full">
             <Image
               width={700}
               height={700}
-              src="/sidePic.png"
+              src="/sidePicDesktop.png"
               alt="Getkit product image"
               style={{ objectFit: 'cover' }}
             />
