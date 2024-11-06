@@ -9,16 +9,37 @@ import {
 } from "@/components/ui/carousel";
 
 export function CarouselDemo() {
-  const images = ["/i1.png", "/i2.png", "/i3.png", "/i4.png", "/i5.png"];
+  const images = [
+    {
+      id:1,
+      src: "/i1.png"
+    },
+    {
+      id:2,
+      src: "/i2.png"
+    },
+    {
+      id:3,
+      src: "/i3.png"
+    },
+    {
+      id:4,
+      src: "/i4.png"
+    },
+    {
+      id:5,
+      src: "/i5.png"
+    }
+  ];
 
   return (
     <Carousel className="w-full">
       <CarouselContent>
-        {images.map((src, index) => (
-          <CarouselItem key={index}>
+        {images.map((img) => (
+          <CarouselItem key={img.id}>
             <div className="p-1">
               
-                  <img src={src} alt={`Image ${index + 1}`} className="w-full rounded-[20px] border-2 border-zinc-400" />
+                  <img src={img.src} alt='img' className="w-full rounded-[20px] border-2 border-zinc-400" />
                
             </div>
           </CarouselItem>
