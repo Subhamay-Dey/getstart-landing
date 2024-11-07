@@ -39,7 +39,7 @@ const components = [
   },
   {
       "title": "Backend Routes",
-      "image": "/nodejs.png",
+      "image": "/nextapi.png",
       "description": "Pre-configured Next.js API routes for backend.",
   },
   {
