@@ -9,6 +9,7 @@ export default function Home() {
     <div className="overflow-x-hidden">
       <Herosection/>
       <Demo/>
+      <Features/>
       <Pricing/>
       <Footer/>
     </div>

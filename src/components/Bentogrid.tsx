@@ -9,11 +9,7 @@ import Link from "next/link"
 
 export default function Bentogrid() {
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl md:text-5xl font-bold text-center mb-8 text-white">
-        Your SaaS Project, Ready to Launch
-      </h1>
-      
+    <div className="container mx-auto p-4 mt-4 lg:mt-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto">
         {/* Core Features Card */}
         <motion.div
@@ -30,7 +26,7 @@ export default function Bentogrid() {
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 max-w-[80%]">
               Clean and user-friendly interface. Easy to use and navigate.
               </h2>
-              <Image src={'/i1.png'} alt="i1"  width={500} height={500} className="rounded-xl items-center border-2 border-gray-300 mt-12"/>
+              <Image src={'/grid1.png'} alt="i1"  width={500} height={500} className="items-center mt-12"/>
 
             </motion.div>
           </Card>

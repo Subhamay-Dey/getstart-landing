@@ -12,7 +12,7 @@ export default function Showcase() {
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col">
 
-          <div className="lg:w-[800px] w-[360px] px-4">
+          <div className="lg:w-[1240px] md:w-[840px] w-[360px] px-4">
             <div className="relative aspect-video rounded-lg border border-gray-800 bg-black shadow-2xl">
               <video
                 className="h-full w-full rounded-lg object-cover"

@@ -9,13 +9,13 @@ import {motion} from "framer-motion"
 
 export default function Pricing() {
   return (
-    <div className="min-h-screen w-full flex flex-col justify-center items-center">
+    <div className="min-h-screen w-full flex flex-col justify-center items-center px-6">
       <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
       >
-      <h2 className='bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-4xl lg:text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400 py-4'>
+      <h2 className='px-3 bg-gradient-to-b from-gray-900 via-black to-gray-600 bg-clip-text tracking-tighter text-transparent text-4xl lg:text-6xl font-black text-center dark:from-white dark:via-gray-200 dark:to-gray-400 py-4'>
           Get your kit today
       </h2>
       </motion.div>
