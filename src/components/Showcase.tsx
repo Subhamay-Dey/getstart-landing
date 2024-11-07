@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { HiOutlineExternalLink } from "react-icons/hi";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
+import {motion} from "framer-motion"
 
 export default function Showcase() {
   return (
@@ -32,7 +33,12 @@ export default function Showcase() {
               <Link href={'/checkout'}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600">
                     Get Access - $19 USD
-                    <ArrowRight className="h-4 w-4" />
+                    <motion.div
+                className="inline-flex"
+                whileHover={{ x: 5 }}
+                >
+                    <ArrowRight/>
+                </motion.div>
                 </Button>
               </Link>
               <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
