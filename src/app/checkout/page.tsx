@@ -3,6 +3,8 @@ import React from 'react'
 
 export default function page() {
   return (
-    <CheckoutPage/>
+    <div>
+      <h1>Cope with us we are fixing a bug</h1>
+    </div>
   )
 }
