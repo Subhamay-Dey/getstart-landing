@@ -87,14 +87,16 @@ export default function CheckoutPage() {
     }
 
     try {
-      const amount = currency === 'USD' ? priceUSD * 100 : priceINR * 100;
-    
       const response = await fetch("/api/createPayment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ amount, currency, email }),
+        body: JSON.stringify({ 
+          productId: "getstart-saas-kit",
+          currency,
+          email 
+        }),
       });
     
       const orderData: RazorpayOrderResponse = await response.json();

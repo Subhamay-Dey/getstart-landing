@@ -1,22 +1,63 @@
-import { NextRequest, NextResponse } from "next/server";
-import Razorpay from "razorpay";
+import { createRazorpayOrder } from '@/lib/razorpay';
+import { NextResponse } from 'next/server';
 
-const razorpay = new Razorpay({
-    key_id: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID!,
-    key_secret: process.env.RAZORPAY_SECRET_ID!
-});
+const PRODUCT_PRICES = {
+  'getstart-saas-kit': {
+    USD: 12 * 100,
+    INR: 999 * 100
+  }
+} as const;
 
-export async function POST(req:Request){
-    const {amount,currency} = await req.json();
 
-    if (!amount || !currency) {
-        return NextResponse.json({ error: "Invalid payment details" }, { status: 400 });
+type ProductId = keyof typeof PRODUCT_PRICES;
+
+
+type ValidCurrency = keyof typeof PRODUCT_PRICES[ProductId];
+
+export async function POST(req: Request) {
+  try {
+    const { productId, currency, email } = await req.json() as { 
+      productId: ProductId;
+      currency: ValidCurrency;
+      email: string;
+    };
+
+    // Validate product exists
+    if (!PRODUCT_PRICES[productId]) {
+      return NextResponse.json(
+        { error: 'Invalid product' },
+        { status: 400 }
+      );
     }
 
-    const order  = await razorpay.orders.create({
-        amount,
-        currency
+    // Get correct price from backend configuration
+    const amount = PRODUCT_PRICES[productId][currency];
+
+    // Validate currency is supported
+    if (!amount) {
+      return NextResponse.json(
+        { error: 'Invalid currency' },
+        { status: 400 }
+      );
+    }
+
+    // Create Razorpay order with the server-side amount
+    const order = await createRazorpayOrder({
+      amount,
+      currency,
+      // Add any additional metadata needed
+      metadata: {
+        productId,
+        email,
+      }
     });
 
     return NextResponse.json(order);
+  } catch (error) {
+    console.error('Payment creation error:', error);
+    return NextResponse.json(
+      { error: 'Payment creation failed' },
+      { status: 500 }
+    );
+  }
 }
