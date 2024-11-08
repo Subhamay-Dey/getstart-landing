@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import {
@@ -13,6 +13,7 @@ import {
 import { loadRazorpayScript } from '@/lib/loadRazorpayScript';
 import { Input } from './ui/input'
 import { toast } from 'sonner'
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface RazorpayOrderResponse {
   id: string;
@@ -31,6 +32,10 @@ export default function CheckoutPage() {
   const [email, setEmail] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState('');
+  const [message, setMessage] = useState<{ text: string; type: 'success' | 'error' | '' }>({ 
+    text: '', 
+    type: '' 
+  });
 
   const productName = "Getstart: Best Nextjs SaaS kit"
   const productDescription = "Built-in authentication, database, backend, and payments"
@@ -69,74 +74,90 @@ export default function CheckoutPage() {
     }
   }
 
-  const handlePayment = async () => {
-    setStatusMessage('');
-    if (!isValidEmail(email)) {
-      toast.warning("Please enter a valid email address");
-      return;
-    }
-
-    setIsSubmitting(true);
-
-    const isRazorpayLoaded = await loadRazorpayScript("https://checkout.razorpay.com/v1/checkout.js");
-    
-    if (!isRazorpayLoaded) {
-      toast.error("Failed to load Razorpay. Please try again.");
-      setIsSubmitting(false);
-      return;
-    }
-
+  const handlePayment = async (selectedCurrency: 'INR' | 'USD') => {
     try {
-      const response = await fetch("/api/createPayment", {
-        method: "POST",
+      
+      const response = await fetch('/api/createPayment', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
-          productId: "getstart-saas-kit",
-          currency,
-          email 
+        body: JSON.stringify({
+          productId: 'getstart-saas-kit',
+          currency: selectedCurrency,
+          email: email,
         }),
       });
-    
-      const orderData: RazorpayOrderResponse = await response.json();
-    
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Server error');
+      }
+
+      if (!data.orderId || !data.amount) {
+        throw new Error('Invalid response from server');
+      }
+
+      // Initialize Razorpay
       const options = {
-        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "",
-        amount: orderData.amount.toString(),
-        currency: orderData.currency,
-        name: "GetStart Kit",
-        image: "/logo.png",
-        description: "Get your SaaS kit for one-time payment",
-        order_id: orderData.id,
-        handler: async function (response: any) {
-          const zipSent = await sendZipFile(response.razorpay_payment_id);
-          if (zipSent) {
-            setStatusMessage("Payment successful! The zip file has been sent to your email.");
-            toast.success("Payment successful! The zip file has been sent to your email.");
-          } else {
-            setStatusMessage("Payment successful! There was an issue sending the zip file. Our team will contact you shortly.");
-            toast.error("Payment successful! However, there was an issue sending the zip file. Our team will contact you shortly.");
+        key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+        amount: data.amount,
+        currency: data.currency,
+        name: 'GetStart',
+        description: 'GetStart SaaS Kit Purchase',
+        order_id: data.orderId,
+        handler: async function(response: any) {
+          try {
+            setStatusMessage('Processing your order...');
+            const zipFileSent = await sendZipFile(response.razorpay_payment_id);
+            if (zipFileSent) {
+              setMessage({ 
+                text: 'Purchase successful! Check your email for the download.', 
+                type: 'success' 
+              });
+            } else {
+              setMessage({ 
+                text: 'Purchase successful but failed to send files. Please contact support.', 
+                type: 'error' 
+              });
+            }
+          } catch (error) {
+            console.error('Error after payment:', error);
+            setMessage({ 
+              text: 'Error processing your order. Please contact support.', 
+              type: 'error' 
+            });
+          } finally {
+            setStatusMessage('');
           }
         },
         prefill: {
           email: email,
-          contact: "",
-        },
-        theme: {
-          color: "#A594F9"
         },
       };
-    
-      const rzp1 = new window.Razorpay(options);
-      rzp1.open();    
+
+      const razorpayInstance = new (window as any).Razorpay(options);
+      razorpayInstance.open();
+
     } catch (error) {
-      console.log("Error during payment", error);
-      toast.error("There was an error initiating the payment. Please try again.");
-    } finally {
-      setIsSubmitting(false);
+      console.error('Client Error Details:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        error
+      });
+      // Add user-friendly error handling here
     }
   };
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    document.body.appendChild(script);
+
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
@@ -186,11 +207,27 @@ export default function CheckoutPage() {
               <Button 
                 className="w-full" 
                 size="lg" 
-                onClick={handlePayment}
+                onClick={() => handlePayment(currency)}
                 disabled={!isValidEmail(email) || isSubmitting}
               >
                 {isSubmitting ? "Processing..." : "Proceed to Checkout"}
               </Button>
+              
+              <AnimatePresence mode="wait">
+                {message.text && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 10 }}
+                    transition={{ duration: 0.3 }}
+                    className={`text-center ${
+                      message.type === 'success' ? 'text-green-500' : 'text-red-500'
+                    }`}
+                  >
+                    {message.text}
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>
