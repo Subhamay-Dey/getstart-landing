@@ -32,7 +32,7 @@ export default function Showcase() {
             <div className="flex justify-center items-center gap-3 flex-col md:flex-row">
               <Link href={'/checkout'}>
                 <Button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white hover:from-purple-600 hover:to-pink-600">
-                    Get Access - $19 USD
+                    Get Access - $12 USD
                     <motion.div
                 className="inline-flex"
                 whileHover={{ x: 5 }}

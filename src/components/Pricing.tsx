@@ -28,7 +28,7 @@ export default function Pricing() {
       <CardHeader className="text-center">
         <h3 className="text-2xl font-semibold text-muted-foreground">PRO</h3>
         <div className="flex items-baseline justify-center gap-2">
-          <span className="text-4xl font-bold">$19</span>
+          <span className="text-4xl font-bold">$12</span>
           <span className="text-sm text-muted-foreground">one-time payment</span>
         </div>
       </CardHeader>
