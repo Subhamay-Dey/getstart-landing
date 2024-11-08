@@ -5,7 +5,7 @@ export default function EarlyReviews() {
 
 
   return (
-    <div className='flex flex-col min-h-screen w-full justify-center items-center'>
+    <div className='flex flex-col py-[70px] mt-[40px] lg:py-[140px] lg:mt-[100px] w-full justify-center items-center'>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
