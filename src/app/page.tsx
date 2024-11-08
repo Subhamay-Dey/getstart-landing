@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div className="overflow-x-hidden">
       <Herosection/>
-      <Demo/>
-      <EarlyReviews/>
       <Features/>
+      <EarlyReviews/>
+      <Demo/>
       <Pricing/>
       <Footer/>
     </div>

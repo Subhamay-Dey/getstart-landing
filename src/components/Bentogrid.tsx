@@ -17,7 +17,7 @@ export default function Bentogrid() {
           transition={{ type: "spring", stiffness: 300 }}
           className="col-span-1 md:col-span-2 row-span-1"
         >
-          <Card className="h-full min-h-[500px] bg-gradient-to-br from-purple-600 to-cyan-500 p-6 relative overflow-hidden">
+          <Card className="h-full min-h-[500px] bg-gradient-to-br from-purple-600 to-cyan-500 p-6 relative overflow-hidden shadow-xl border border-gray-600 rounded-xl">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -38,7 +38,7 @@ export default function Bentogrid() {
           transition={{ type: "spring", stiffness: 300 }}
           className="col-span-1 row-span-1"
         >
-          <Card className="h-full min-h-[450px] bg-slate-900 p-6 flex flex-col items-center justify-center text-white">
+          <Card className="shadow-xl border border-gray-200 rounded-xl h-full min-h-[450px] bg-slate-900 p-6 flex flex-col items-center justify-center text-white">
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -63,7 +63,7 @@ export default function Bentogrid() {
           transition={{ type: "spring", stiffness: 300 }}
           className="col-span-1 row-span-1"
         >
-          <Card className="h-full min-h-[450px]  bg-slate-900 p-6 text-white">
+          <Card className="shadow-xl border border-gray-200 rounded-xl h-full min-h-[450px]  bg-slate-900 p-6 text-white">
             <motion.div
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -98,7 +98,7 @@ export default function Bentogrid() {
           transition={{ type: "spring", stiffness: 300 }}
           className="col-span-1 md:col-span-2 row-span-1"
         >
-          <Card className="h-full min-h-[450px]  bg-gradient-to-br from-purple-600 to-cyan-500 p-6 text-white flex flex-col justify-center items-center overflow-hidden">
+          <Card className="shadow-xl border border-gray-600 rounded-xl h-full min-h-[450px]  bg-gradient-to-br from-purple-600 to-cyan-500 p-6 text-white flex flex-col justify-center items-center overflow-hidden">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

@@ -2,6 +2,7 @@
 import Marquee from './ui/marquee'
 import {motion} from 'framer-motion'
 import { Tweet } from 'react-tweet'
+import ClientTweetCard from './ui/client-tweet-card';
 
 interface Tweet {
   author: string;
@@ -72,8 +73,8 @@ export default function EarlyReviews() {
             <div className="flex gap-4 px-4">
                 <div className='flex gap-4 mt-12'>
                     {tweets.map((tweet, index) => (
-                      <div key={index} className="min-w-[350px]">
-                        <Tweet id={tweet.id} />
+                      <div key={index} className="min-w-[350px] w-[350px] lg:w-[450px]">
+                        <ClientTweetCard className="shadow-lg border border-gray-600 rounded-xl" id={tweet.id} />
                       </div>
                     ))}
                 </div>
