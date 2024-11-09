@@ -21,11 +21,25 @@ const tweets: Tweet[] = [
     id: "1854797703546286450"
   },
   {
+    author: "Ashesh Bandopadhyay",
+    handle: "@benedictionAsh",
+    content: "ooofff such a headache reliever. you guys just made whole setup process so much easier. thanks and keep up the good work🔥",
+    date: "November 9, 2024",
+    id: "1855229903748084201"
+  },
+  {
     author: "Ayush Oswal",
     handle: "Oswal_ayushh",
     content: "All the bestt bro!, ui looks amazing🔥🔥",
     date: "November 5, 2024",
     id: "1853817244771639413"
+  },
+  {
+    author: "Ashesh Bandopadhyay",
+    handle: "@benedictionAsh",
+    content: "ooofff such a headache reliever. you guys just made whole setup process so much easier. thanks and keep up the good work🔥",
+    date: "November 9, 2024",
+    id: "1855229903748084201"
   },
   {
     author: "Sheibban Pervez",
@@ -54,7 +68,7 @@ const tweets: Tweet[] = [
     content: "@Subhraneel55545, that sounds like a smart solution. streamlining those repetitive tasks can really boost creativity. what features are you most excited about?",
     date: "November 1, 2024",
     id: "1854797703546286450"
-  }
+  },
 ];
 
 export default function EarlyReviews() {
@@ -73,7 +87,7 @@ export default function EarlyReviews() {
             <div className="flex gap-4 px-4">
                 <div className='flex gap-4 mt-12'>
                     {tweets.map((tweet, index) => (
-                      <div key={index} className="min-w-[350px] w-[350px] lg:w-[450px]">
+                      <div key={index} className="min-w-[350px] w-[350px] lg:w-[450px] h-[200px]">
                         <ClientTweetCard className="shadow-lg border border-gray-600 rounded-xl" id={tweet.id} />
                       </div>
                     ))}

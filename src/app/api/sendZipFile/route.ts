@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
                 <p style="font-size: 16px; color: #333333; margin-bottom: 20px;">
                   Your payment has been successfully processed. You can download your GetStart Kit from the link below:
                 </p>
-                <a href="https://drive.google.com/file/d/10dS_NxS50yitA-ro-lzrZCW0w5rbJiVh/view?usp=sharing" 
+                <a href="https://drive.google.com/file/d/1UvzX8pudZY2BQjN4iI_vdldisubFMQ9b/view?usp=sharing" 
                   style="display: inline-block; padding: 12px 20px; font-size: 16px; color: #ffffff; background-color: #3a86ff; border-radius: 4px; text-decoration: none; transition: background-color 0.3s;">
                   Download GetStart Kit
                 </a>
