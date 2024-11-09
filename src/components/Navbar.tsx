@@ -110,6 +110,12 @@ export default function Navbar() {
                 </ul>
               </NavigationMenuContent>
             </NavigationMenuItem>
+            <Link href={'https://deadpan-eclipse-267.notion.site/Getstart-Documentation-12abb54875e6808ab04bef2334a05b04?pvs=4'} target="_blank">
+              <Button variant={'ghost'}>
+                Documentation
+                <HiOutlineExternalLink size={20}/>
+              </Button>
+            </Link>
             <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
               <Button variant={'ghost'}>
                 Live Preview
@@ -161,6 +167,12 @@ export default function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+                <Link href={'https://deadpan-eclipse-267.notion.site/Getstart-Documentation-12abb54875e6808ab04bef2334a05b04?pvs=4'} target="_blank">
+                  <Button variant={'ghost'}>
+                    Documentation
+                    <HiOutlineExternalLink size={20}/>
+                  </Button>
+                </Link>
                 <Link href={'https://getstart-lhzm.vercel.app/'} target="_blank">
                   <Button variant={'ghost'}>
                     Live Preview
