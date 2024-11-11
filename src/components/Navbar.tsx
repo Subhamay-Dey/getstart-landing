@@ -183,7 +183,7 @@ export default function Navbar() {
         </SheetContent>
       </Sheet>
 
-      <Link href={'/checkout'} className="hidden lg:inline-flex">
+      <Link href={'/https://subhraneel0.gumroad.com/l/bjmeg'} target="_blank" className="hidden lg:inline-flex">
         <Button size="sm">
           Get Kit ✨
         </Button>

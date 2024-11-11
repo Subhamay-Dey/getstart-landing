@@ -49,7 +49,7 @@ export default function Pricing() {
         </div>
       </CardContent>
       <CardFooter>
-        <Link href={'/checkout'} className="flex justify-center items-center w-full">
+        <Link href={'/https://subhraneel0.gumroad.com/l/bjmeg'} target="_blank" className="flex justify-center items-center w-full">
           <Button className="w-full bg-primary hover:bg-primary/90">
             Subscribe
             <motion.div
