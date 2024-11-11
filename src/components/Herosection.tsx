@@ -34,7 +34,7 @@ export default function Herosection() {
         </motion.div>
 
       <div>
-        <Link href={'/https://subhraneel0.gumroad.com/l/bjmeg'}>
+        <Link href={'https://subhraneel0.gumroad.com/l/bjmeg'}>
           <ShinyButton className='px-8 py-4 mt-[25px] md:mt-[45px] rounded-xl shadow-2xl text-zinc-900 font-bold bg-gradient-to-r from-[#A594F9] to-[#CDC1FF]'>
             Get kit ✨
           </ShinyButton>
